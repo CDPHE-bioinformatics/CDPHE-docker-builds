@@ -20,7 +20,7 @@ RUN apt-get update && \
         xscreensaver && \
     rm -rf /var/lib/apt/lists/*
 
-FROM stock AS monitor
+FROM stock AS ops-agent
 
 RUN apt-get update && \
     apt-get install -y curl gnupg ca-certificates && \
@@ -28,10 +28,14 @@ RUN apt-get update && \
     bash add-google-cloud-ops-agent-repo.sh --also-install && \
     rm -rf /var/lib/apt/lists/*
 
+COPY ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
+
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
 LABEL license="https://github.com/CDPHE/docker-builds/blob/master/LICENSE"
 LABEL maintainer="Daniel Polanco"
 LABEL maintainer.email="daniel.polanco@state.co.us"
+
+CMD ["/usr/sbin/google_cloud_ops_agent"]
 
 WORKDIR /data
