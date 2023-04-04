@@ -1,0 +1,6 @@
+logging:
+  enable_syslog: true
+  syslog_facility: local0
+
+metrics:
+  enabled: true
