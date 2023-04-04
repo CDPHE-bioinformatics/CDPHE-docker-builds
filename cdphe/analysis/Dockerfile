@@ -20,6 +20,13 @@ RUN apt-get update && \
         xscreensaver && \
     rm -rf /var/lib/apt/lists/*
 
+FROM stock AS monitored
+
+RUN apt-get update && \
+    apt-get install -y curl gnupg ca-certificates && \
+    curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh && \
+    bash add-google-cloud-ops-agent-repo.sh --also-install
+
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
 LABEL license="https://github.com/CDPHE/docker-builds/blob/master/LICENSE"
