@@ -1,5 +1,6 @@
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Stock setup
 FROM ubuntu:focal AS stock
 
 ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND}
@@ -20,6 +21,7 @@ RUN apt-get update && \
         xscreensaver && \
     rm -rf /var/lib/apt/lists/*
 
+# GCP Ops agent addin
 FROM stock AS ops-agent
 
 RUN apt-get update && \
@@ -30,12 +32,31 @@ RUN apt-get update && \
 
 COPY ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
 
+CMD ["/usr/sbin/google_cloud_ops_agent"]
+
+# GCP Monitoring agent addin
+FROM ops-agent AS monitoring-agent
+
+RUN apt-get update && \
+    apt-get install -y curl gnupg2 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+RUN echo "deb http://packages.cloud.google.com/apt google-cloud-monitoring-bionic main" > /etc/apt/sources.list.d/google-cloud-monitoring.list
+
+RUN apt-get update && \
+    apt-get install -y stackdriver-agent && \
+    rm -rf /var/lib/apt/lists/*
+
+CMD ["/usr/sbin/stackdriver-agent", "--no-start"]
+
+# Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
 LABEL license="https://github.com/CDPHE/docker-builds/blob/master/LICENSE"
 LABEL maintainer="Daniel Polanco"
 LABEL maintainer.email="daniel.polanco@state.co.us"
 
-CMD ["/usr/sbin/google_cloud_ops_agent"]
-
+# Set workdir for analysis
 WORKDIR /data
