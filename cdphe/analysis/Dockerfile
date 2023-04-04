@@ -17,7 +17,8 @@ RUN apt-get update && \
         tasksel \
         wget \
         xfce4 \
-        xscreensaver
+        xscreensaver && \
+    rm -rf /var/lib/apt/lists/*
 
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
