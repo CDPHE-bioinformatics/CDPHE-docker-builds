@@ -38,8 +38,7 @@ CMD ["/usr/sbin/google_cloud_ops_agent"]
 FROM ops-agent AS monitoring-agent
 
 RUN apt-get update && \
-    apt-get install -y curl gnupg2 && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y curl gnupg2
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
@@ -50,6 +49,19 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 CMD ["/usr/sbin/stackdriver-agent", "--no-start"]
+
+# Google Cloud
+FROM monitoring-agent AS gcloud
+RUN apt-get update && \
+    apt-get install apt-transport-https ca-certificates gnupg
+
+RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
+
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+RUN apt-get update && \
+    apt-get install -y google-cloud-cli && \
+    rm -rf /var/lib/apt/lists/*
 
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
