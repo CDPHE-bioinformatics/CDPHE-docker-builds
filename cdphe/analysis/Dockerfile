@@ -52,6 +52,7 @@ CMD ["/usr/sbin/stackdriver-agent", "--no-start"]
 
 # Google Cloud
 FROM monitoring-agent AS gcloud
+
 RUN apt-get update && \
     apt-get install apt-transport-https ca-certificates gnupg
 
@@ -62,6 +63,18 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update && \
     apt-get install -y google-cloud-cli && \
     rm -rf /var/lib/apt/lists/*
+
+# Chrome remote desktop
+FROM gcloud AS chrome-remote-desktop
+
+RUN curl -L -o chrome-remote-desktop_current_amd64.deb \
+    https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
+
+RUN apt-get update && \
+    apt-get install --assume-yes ./chrome-remote-desktop_current_amd64.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
 
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
