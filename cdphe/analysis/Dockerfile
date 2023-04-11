@@ -79,6 +79,8 @@ RUN bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-
 
 RUN systemctl disable gdm.service
 
+# 
+
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
