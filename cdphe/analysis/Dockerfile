@@ -50,11 +50,22 @@ RUN apt-get update && \
 
 CMD ["/usr/sbin/stackdriver-agent", "--no-start"]
 
-# Google Cloud
-FROM monitoring-agent AS gcloud
+# Google OS Config Agent
+FROM monitoring-agent AS os-config-agent
+RUN echo 'deb http://packages.cloud.google.com/apt google-compute-engine-focal-stable main' > \
+    /etc/apt/sources.list.d/google-compute-engine.list
+
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+    apt-key add -
 
 RUN apt-get update && \
-    apt-get install apt-transport-https ca-certificates gnupg
+    apt-get install -y google-osconfig-agent
+
+# Google Cloud
+FROM os-config-agent AS gcloud
+
+RUN apt-get update && \
+    apt-get install -y apt-transport-https ca-certificates gnupg
 
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 
