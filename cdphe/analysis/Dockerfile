@@ -86,7 +86,7 @@ RUN apt-get update && \
     apt-get install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver && \
     rm -rf /var/lib/apt/lists/*
 
-RUN bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
+RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session
 
 RUN systemctl disable gdm.service
 
