@@ -91,6 +91,19 @@ FROM docker as java
 
 RUN apt-get update && apt-get install --assume-yes openjdk-8-jre
 
+FROM java as r
+
+RUN apt-get update && apt-get install --assume-yes software-properties-common
+
+RUN apt-key adv --keyserver keyserver.ubuntu.com \
+    --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
+    add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+
+RUN apt-get update && \
+    apt-get install --assume-yes r-base
+
+RUN rm -rf /var/lib/apt/lists/*
+
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"
