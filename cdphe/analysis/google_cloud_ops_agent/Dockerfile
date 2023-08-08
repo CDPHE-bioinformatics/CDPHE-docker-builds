@@ -14,3 +14,6 @@ RUN bash add-google-cloud-ops-agent-repo.sh --also-install
 
 # Copy generic configuration file
 COPY ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
+
+# Make docker container image more compact
+RUN rm -rf /var/lib/apt/lists/*

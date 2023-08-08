@@ -19,3 +19,6 @@ RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-de
 
 # Disable lightdm since there isn't a display connected to the instance
 RUN systemctl disable lightdm.service
+
+# Make docker container image more compact
+RUN rm -rf /var/lib/apt/lists/*
