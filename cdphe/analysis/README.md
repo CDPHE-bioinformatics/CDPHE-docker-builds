@@ -20,34 +20,17 @@ individually. Note also includes Google Cloud agents.
 1. Chrome Remote Desktop
 2. Google Config and Ops Agents
 3. Google Cloud CLI
-4. Jupyter Core and Client
-5. Docker
-6. Java
+4. Docker
+5. Java
+6. Jupyter Core and Client
+
+## Container Design
+
+To ease testing and therefore deployment, each of the listed software have there
+own Dockerfile in their respective folders.
 
 ### Optimized Dockerfile
 
 To reduce the size and improve building a container from our prerequisites, we
 list the full installation below but remove duplicate software/packages from
 the Dockerfile.
-
-### Google Chrome Remote Desktop
-
-Directions are taken from Google's [documentation](https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine).
-
-```docker
-FROM ubuntu:focal
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN curl -L -o chrome-remote-desktop_current_amd64.deb \
-    https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
-
-RUN apt update && \
-    apt install --assume-yes ./chrome-remote-desktop_current_amd64.deb && \
-    apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver && \
-    apt install --assume-yes task-xfce-desktop
-
-RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session
-
-RUN systemctl disable lightdm.service
-```

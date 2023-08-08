@@ -5,7 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install prerequisites
 RUN apt-get update && apt-get install --assume-yes curl gnupg
-#apt-get install -y apt-transport-https ca-certificates gnupg
 
 # Add google repository and public key
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > \
