@@ -30,7 +30,7 @@ RUN apt-get update && \
     bash add-google-cloud-ops-agent-repo.sh --also-install && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
+COPY ./google_cloud_ops_agent/ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
 
 CMD ["/usr/sbin/google_cloud_ops_agent"]
 
