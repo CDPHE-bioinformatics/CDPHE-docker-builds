@@ -19,7 +19,7 @@ individually. Note also includes Google Cloud agents.
 
 1. Chrome Remote Desktop
 2. Google Config and Ops Agents
-3. Google Cloud Tools
+3. Google Cloud CLI
 4. Jupyter Core and Client
 5. Docker
 6. Java

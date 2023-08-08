@@ -5,16 +5,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install prerequisites
 RUN apt-get update && apt-get install --assume-yes curl gnupg
+#apt-get install -y apt-transport-https ca-certificates gnupg
 
 # Add google repository and public key
-RUN echo 'deb http://packages.cloud.google.com/apt google-compute-engine-focal-stable main' > \
-    /etc/apt/sources.list.d/google-compute-engine.list && \
+RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > \
+    /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
     apt-key add -
 
 # Install agent
 RUN apt-get update && \
-    apt-get install --assume-yes google-osconfig-agent
+    apt-get install --assume-yes google-cloud-cli
 
 # Make docker container image more compact
 RUN rm -rf /var/lib/apt/lists/*

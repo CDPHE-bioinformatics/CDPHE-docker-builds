@@ -50,7 +50,7 @@ RUN apt-get update && \
 FROM os-config-agent AS gcloud
 
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates gnupg
+    apt-get install -y curl gnupg
 
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 
