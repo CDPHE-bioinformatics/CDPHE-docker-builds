@@ -18,3 +18,7 @@ RUN apt-get update && \
 
 # Make docker container image more compact
 RUN rm -rf /var/lib/apt/lists/*
+
+# Recommended: to run docker without root priveges (i.e. sudo)
+# https://docs.docker.com/engine/install/linux-postinstall/
+# Must be run as the user who will be invocking docker from the CLI
