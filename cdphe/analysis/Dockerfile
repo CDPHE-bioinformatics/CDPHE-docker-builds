@@ -87,6 +87,10 @@ RUN apt-get update && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+FROM docker as java
+
+RUN apt-get update && apt-get install --assume-yes openjdk-8-jre
+
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
 LABEL website="https://github.com/CDPHE/docker-builds"

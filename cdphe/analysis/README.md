@@ -22,7 +22,8 @@ individually. Note also includes Google Cloud agents.
 3. Google Cloud CLI
 4. Docker
 5. Java
-6. Jupyter
+6. R
+7. Anaconda
 
 ## Container Design
 
