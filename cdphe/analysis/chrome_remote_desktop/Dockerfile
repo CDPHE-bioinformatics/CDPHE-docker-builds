@@ -3,7 +3,7 @@ FROM ubuntu:focal
 # Use noninteractive to suppress prompt to configure keyboard layout
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install curl for downloading
+# Install prerequisites
 RUN apt-get update && apt-get install --assume-yes curl
 
 # Download deb package and install Chrome Remote Desktop
