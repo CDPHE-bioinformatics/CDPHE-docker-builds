@@ -25,7 +25,7 @@ RUN apt-get update && \
 FROM stock AS ops-agent
 
 RUN apt-get update && \
-    apt-get install -y curl gnupg ca-certificates && \
+    apt-get install -y curl gnupg && \
     curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh && \
     bash add-google-cloud-ops-agent-repo.sh --also-install && \
     rm -rf /var/lib/apt/lists/*
