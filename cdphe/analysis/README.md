@@ -18,7 +18,7 @@ shared list that we all use and isn't therefore inclusive of what we install
 individually. Note also includes Google Cloud agents.
 
 1. Google Chrome Remote Desktop
-2. Google Monitoring, Config, and Ops Agents
+2. Google Config and Ops Agents
 3. Google Cloud Tools
 4. Jupyter Core and Client
 5. Docker

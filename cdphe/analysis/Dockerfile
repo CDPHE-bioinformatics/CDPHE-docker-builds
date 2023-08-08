@@ -34,24 +34,9 @@ COPY ./google_cloud_ops_agent/ops-agent-config.yaml /etc/google-cloud-ops-agent/
 
 CMD ["/usr/sbin/google_cloud_ops_agent"]
 
-# GCP Monitoring agent addin
-FROM ops-agent AS monitoring-agent
-
-RUN apt-get update && \
-    apt-get install -y curl gnupg2
-
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-
-RUN echo "deb http://packages.cloud.google.com/apt google-cloud-monitoring-bionic main" > /etc/apt/sources.list.d/google-cloud-monitoring.list
-
-RUN apt-get update && \
-    apt-get install -y stackdriver-agent && \
-    rm -rf /var/lib/apt/lists/*
-
-CMD ["/usr/sbin/stackdriver-agent", "--no-start"]
-
 # Google OS Config Agent
-FROM monitoring-agent AS os-config-agent
+FROM ops-agent AS os-config-agent
+
 RUN echo 'deb http://packages.cloud.google.com/apt google-compute-engine-focal-stable main' > \
     /etc/apt/sources.list.d/google-compute-engine.list
 
