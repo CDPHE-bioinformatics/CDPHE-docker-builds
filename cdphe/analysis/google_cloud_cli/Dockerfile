@@ -12,7 +12,7 @@ RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
     apt-key add -
 
-# Install agent
+# Install package
 RUN apt-get update && \
     apt-get install --assume-yes google-cloud-cli
 

@@ -30,9 +30,7 @@ RUN apt-get update && \
     bash add-google-cloud-ops-agent-repo.sh --also-install && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ./google_cloud_ops_agent/ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
-
-CMD ["/usr/sbin/google_cloud_ops_agent"]
+COPY ./google_ops_agent/ops-agent-config.yaml /etc/google-cloud-ops-agent/config.yaml
 
 # Google OS Config Agent
 FROM ops-agent AS os-config-agent
@@ -73,7 +71,21 @@ RUN apt-get update && \
 
 RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session
 
-RUN systemctl disable gdm.service
+RUN systemctl disable lightdm.service
+
+FROM chrome-remote-desktop AS docker
+
+RUN apt-get update && apt-get install --assume-yes curl gnupg
+
+RUN echo "deb https://download.docker.com/linux/ubuntu focal stable" > \
+    /etc/apt/sources.list.d/docker.list && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+    apt-key add -
+
+RUN apt-get update && \
+    apt-get install --assume-yes docker-ce
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
