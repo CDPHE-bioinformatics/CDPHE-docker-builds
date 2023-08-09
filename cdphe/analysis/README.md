@@ -15,15 +15,26 @@ Platform (GCP) virtual machine that we use for analysis.
 We use many software packages for analysis. The software listed here is what is
 installed as a base image for our bioinformaticians to use. It is the common or
 shared list that we all use and isn't therefore inclusive of what we install
-individually. Note also includes Google Cloud agents.
+individually. Note it also includes Google Cloud agents.
 
 1. Chrome Remote Desktop
 2. Google Config and Ops Agents
 3. Google Cloud CLI
-4. Docker
-5. Java
-6. R
-7. Anaconda
+4. Visual Studio Code
+5. Docker
+6. Java
+7. R
+
+## Other Software (Not Installed)
+
+A list of other software commonly used is incluced here, but they are not
+in the CDPHE analysis Dockerfile. Some of this software is difficult to
+translate from a Docker container to a production VM. For example, some packages
+don't install to a central directory with multi-user support; this means
+individual users should install that software in their home directory instead.
+
+1. StaPH-B Toolkit
+2. Nextflow
 
 ## Container Design
 
@@ -50,3 +61,18 @@ to root with `sudo su` and run:
 ```bash
 apt-get update && apt-get install --assume-yes curl
 ```
+
+## Post Installation
+
+Some packages require configuration based on which user is logged in or for
+runtime related requirements. The following provides links for doing so.
+
+### Docker Without Root Privileges
+
+Instead of using `sudo` to run `docker`, users may follow post installation
+[instructions](https://docs.docker.com/engine/install/linux-postinstall/).
+
+### Anaconda Without Root Privileges
+
+Instead of using `sudo` to run `conda`, users may follow post installation
+[instructions](https://docs.anaconda.com/free/anaconda/install/multi-user/)
