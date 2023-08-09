@@ -35,6 +35,16 @@ individual users should install that software in their home directory instead.
 
 1. StaPH-B Toolkit
 2. Nextflow
+3. Anaconda
+4. Bedtools
+5. Miniwdl
+6. IGV
+7. Pangolin
+8. VADR
+9. Basespace CLI
+10. SRA Toolkit
+11. R Kernel for Jupyter Notebook
+12. Aliview
 
 ## Container Design
 

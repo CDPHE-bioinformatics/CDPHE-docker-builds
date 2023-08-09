@@ -44,7 +44,7 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
 RUN apt-get update && \
     apt-get install -y google-osconfig-agent
 
-# Google Cloud
+# Google Cloud SDK
 FROM os-config-agent AS gcloud
 
 RUN apt-get update && \
@@ -73,6 +73,7 @@ RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-de
 
 RUN systemctl disable lightdm.service
 
+# Docker
 FROM chrome-remote-desktop AS docker
 
 RUN apt-get update && apt-get install --assume-yes curl gnupg
@@ -87,10 +88,12 @@ RUN apt-get update && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+# Java
 FROM docker as java
 
 RUN apt-get update && apt-get install --assume-yes openjdk-8-jre
 
+# R
 FROM java as r
 
 RUN apt-get update && apt-get install --assume-yes software-properties-common
@@ -103,6 +106,18 @@ RUN apt-get update && \
     apt-get install --assume-yes r-base
 
 RUN rm -rf /var/lib/apt/lists/*
+
+# VS Code
+FROM r as vscode
+
+RUN apt-get update && apt-get install --assume-yes curl gnupg
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc \
+    | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
+    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
+    > /etc/apt/sources.list.d/vscode.list
+
+RUN apt-get update && apt-get install --assume-yes code
 
 # Dockerfile meta
 LABEL description="This image contains all tools base/prior to analysis or development."
