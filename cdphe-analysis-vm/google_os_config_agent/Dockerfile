@@ -13,8 +13,7 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
     > /etc/apt/sources.list.d/google.list
 
 # Install agent
-RUN apt-get update && \
-    apt-get install --assume-yes google-osconfig-agent
+RUN apt-get update && apt-get install --assume-yes google-osconfig-agent
 
 # Make docker container image more compact
 RUN rm -rf /var/lib/apt/lists/*
