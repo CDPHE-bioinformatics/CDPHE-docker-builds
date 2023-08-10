@@ -4,6 +4,7 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install package
-FROM docker as java
-
 RUN apt-get update && apt-get install --assume-yes openjdk-8-jre
+
+# Make docker container image more compact
+RUN rm -rf /var/lib/apt/lists/*
