@@ -6,15 +6,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install prerequisites
 RUN apt-get update && apt-get install --assume-yes curl gnupg
 
-# Add docker repository and public key
-RUN echo "deb https://download.docker.com/linux/ubuntu focal stable" > \
-    /etc/apt/sources.list.d/docker.list && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-    apt-key add -
+# Add docker public key and repository
+RUN curl https://download.docker.com/linux/ubuntu/gpg \
+    | gpg --dearmor | tee /usr/share/keyrings/docker.gpg \
+    && echo 'deb [signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu focal stable' \
+    > /etc/apt/sources.list.d/docker.list
 
 # Install package
-RUN apt-get update && \
-    apt-get install --assume-yes docker-ce
+RUN apt-get update && apt-get install --assume-yes docker-ce
 
 # Make docker container image more compact
 RUN rm -rf /var/lib/apt/lists/*
