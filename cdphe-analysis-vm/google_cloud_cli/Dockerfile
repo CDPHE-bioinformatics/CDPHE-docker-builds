@@ -4,7 +4,7 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install prerequisites
-RUN apt-get update && apt-get install --assume-yes curl gnupg
+RUN apt-get update && apt-get install --assume-yes curl gpg
 
 # Add google repository and public key
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > \

@@ -4,7 +4,7 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install prerequisites
-RUN apt-get update && apt-get install --assume-yes curl gnupg
+RUN apt-get update && apt-get install --assume-yes curl gpg
 
 # Download script, install and agent is started automaticaly
 RUN curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh \

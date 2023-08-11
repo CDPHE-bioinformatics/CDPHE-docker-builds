@@ -4,7 +4,7 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install prerequisites
-RUN apt-get update && apt-get install --assume-yes curl gnupg
+RUN apt-get update && apt-get install --assume-yes curl gpg
 
 # Add microsoft public key and repository
 RUN curl https://packages.microsoft.com/keys/microsoft.asc \
