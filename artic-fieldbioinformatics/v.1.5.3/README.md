@@ -1,0 +1,3 @@
+# artic-fieldbioinformatics v1.5.3
+
+This Dockerfile corresponds to the [sambaird/artic-fieldbioinformatics:1.5.3](https://hub.docker.com/layers/sambaird/artic-fieldbioinformatics/1.5.3/images/sha256-c977437686ac40fb4dd2f60e10b68997819dde2bc25c6775294185b197ee7106?context=repo) image hosted on Dockerhub for alignment, variant calling, and consensus generation of SARS-CoV-2 genomes from Oxford Nanopore reads. It's slightly modified from the developer's provided Dockerfile in the in the fieldbioinformatics repo, but set to give container root permissions by default for Terra.bio compatibility. The Dockerfile was built from inside a cloned copy of the [fieldbioinformatics repo at release v1.5.3](https://github.com/artic-network/fieldbioinformatics/tree/v1.5.3).
