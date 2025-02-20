@@ -16,7 +16,7 @@ Script parameters:
 
 `--workflow_name` - workflow name
 
-`--workflow_version` - workflow version with dashes (e.g. v2-2-0)
+`--workflow_version` - workflow version without periods (e.g. v2_2_0)
 
 
 ## Examples
