@@ -2,10 +2,11 @@ FROM python:3.10.12
 
 LABEL base.image="python:3.10.12"
 LABEL description="WDL workflow and task version capture"
-LABEL host='ariannaesmith'
-LABEL name="cdphe_wdl_version_capture"
-LABEL dockerfile.version="v0.1.0"
 LABEL maintainer "Arianna Smith <arianna.smith@state.co.us>"
+
+ENV HOST='ariannaesmith'
+ENV NAME="cdphe_wdl_version_capture"
+ENV VERSION="v0.1.0"
 
 WORKDIR /usr/src/app
 

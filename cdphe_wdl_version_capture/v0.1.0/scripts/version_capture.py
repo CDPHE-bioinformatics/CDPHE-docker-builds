@@ -2,7 +2,6 @@ import argparse
 import json
 import pandas as pd
 import sys
-import docker
 
 def get_options(args=sys.argv[1:]):
     parser = argparse.ArgumentParser()
@@ -11,6 +10,9 @@ def get_options(args=sys.argv[1:]):
     parser.add_argument('--versions_json', help='JSON file with an array of version_info objects (keys should be "software", "docker", and "version")')
     parser.add_argument('--workflow_name', help='workflow name (e.g. SC2_ont_assembly)')
     parser.add_argument('--workflow_version', help='workflow version without periods (e.g. v2-2-0)')
+    parser.add_argument('--docker_name', help='the Dockerfile ENV variable "NAME" for this container')
+    parser.add_argument('--docker_host', help='the Dockerfile ENV variable "HOST" for this container')
+    parser.add_argument('--docker_version', help='the Dockerfile ENV variable "VERSION" for this container')
     options = parser.parse_args(args)
     return options
 
@@ -18,15 +20,12 @@ def create_version_df(options):
     with open(options.versions_json) as f:
         records = json.load(f)['versions']
 
-    client = docker.from_env()
-    docker_name = client.images.labels['name']
-    docker_full_name = client.images.labels['host'] + '/' + docker_name
-    docker_version = client.images.labels['dockerfile.version']
+    docker_full_name = options.docker_host + '/' + options.docker_name
 
     version_capture_docker_record = {
-        'software': docker_name,
+        'software': options.docker_name,
         'docker': docker_full_name,
-        'version': docker_version
+        'version': options.docker_version
     }
 
     records.insert(0, version_capture_docker_record)
