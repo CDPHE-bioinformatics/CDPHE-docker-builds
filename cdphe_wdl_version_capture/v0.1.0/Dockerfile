@@ -9,7 +9,7 @@ LABEL maintainer "Arianna Smith <arianna.smith@state.co.us>"
 
 WORKDIR /usr/src/app
 
-ENV PATH /usr/src/app:$PATH
+ENV PATH="/usr/src/app:$PATH"
 
 COPY scripts/* ./
 COPY requirements.txt ./
