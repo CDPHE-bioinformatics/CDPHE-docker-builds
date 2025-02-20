@@ -1,6 +1,6 @@
-FROM python:3.7
+FROM python:3.10.12
 
-LABEL base.image="python:3.7"
+LABEL base.image="python:3.10.12"
 LABEL description="WDL workflow and task version capture"
 LABEL host='ariannaesmith'
 LABEL name="cdphe_wdl_version_capture"
