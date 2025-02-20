@@ -19,19 +19,22 @@ def create_version_df(options):
         records = json.load(f)['versions']
 
     client = docker.from_env()
+    docker_name = client.images.labels['name']
+    docker_full_name = client.images.labels['host'] + '/' + docker_name
     docker_version = client.images.labels['dockerfile.version']
 
-    workflow_record = {
-        'software': options.workflow_name,
-        'docker': docker_version,
-        'version': options.workflow_version
+    version_capture_docker_record = {
+        'software': docker_name,
+        'docker': docker_full_name,
+        'version': docker_version
     }
 
-    records.insert(0, workflow_record)
+    records.insert(0, version_capture_docker_record)
     df = pd.DataFrame(records)
     df.insert(0, 'project_name', options.project_name)
     df.insert(1, 'analysis_date', options.analysis_date)
     df = df.rename(columns={'docker': 'associated_docker_container'})  # backwards-compat naming
+    
     return df
 
 if __name__ == '__main__':
