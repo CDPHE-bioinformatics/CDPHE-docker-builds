@@ -1,7 +1,7 @@
 # cdphe-wdl-version-capture container
 
 ## Description
-This tool is used for creating a version capture file for both WDL workflows and task software. See the associated WDL task file to import [here](https://github.com/CDPHE-bioinformatics/CDPHE-H5-influenza/blob/main/src/wdls/version_capture_tasks.wdl).
+This Docker container is used for creating a version capture file for WDL workflows and task software. It is located at [ariannaesmith/cdphe_wdl_version_capture](https://hub.docker.com/repository/docker/ariannaesmith/cdphe_wdl_version_capture/general). See the associated WDL task file to import [here](https://github.com/CDPHE-bioinformatics/CDPHE-H5-influenza/blob/main/src/wdls/version_capture_tasks.wdl).
 
 Script parameters:
 
@@ -29,6 +29,9 @@ Script parameters:
 ```
 version_capture.py \
   --analysis_date 2024-10-19
+  --docker_name $NAME
+  --docker_host $HOST
+  --docker_version $VERSION
   --project_name cov_2198_grid \
   --versions_json versions.json \
   --workflow_name SC2_ont_assembly \
