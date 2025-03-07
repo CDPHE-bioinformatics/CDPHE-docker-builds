@@ -1,7 +1,7 @@
 # cdphe-wdl-version-capture container
 
 ## Description
-This Docker container is used for creating a version capture file for WDL workflows and task software. It is located at [ariannaesmith/cdphe_wdl_version_capture](https://hub.docker.com/repository/docker/ariannaesmith/cdphe_wdl_version_capture/general). See the associated WDL task file to import [here](https://github.com/CDPHE-bioinformatics/CDPHE-H5-influenza/blob/main/src/wdls/version_capture_tasks.wdl).
+This Docker container is used for creating a version capture file for WDL workflows and task software. It is located at [ariannaesmith/cdphe_wdl_version_capture](https://hub.docker.com/repository/docker/ariannaesmith/cdphe_wdl_version_capture/general). See the associated WDL task file to import [here](https://github.com/CDPHE-bioinformatics/wdl-shared/blob/main/version_capture_tasks.wdl).
 
 Script parameters:
 
