@@ -49,30 +49,31 @@ RUN wget "http://github.com/pachterlab/kallisto/archive/refs/tags/v${KALLISTO_VE
 
 
 ##### ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- #####
+##### This is fro adding to staphb docker containers
 ##### Step 2. Set up the testing stage.                                 #####
 ##### The docker image is built to the 'test' stage before merging, but #####
 ##### the test stage (or any stage after 'app') will be lost.           #####
 ##### ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- #####
 
 # A second FROM insruction creates a new stage
-FROM app as test
+# FROM app as test
 
-# set working directory so that all test inputs & outputs are kept in /test
-# copying kallisto test data into wd /test
-RUN mkdir -p /test && cp kallisto-${KALLISTO_VER}/test/* /test/
+# # set working directory so that all test inputs & outputs are kept in /test
+# # copying kallisto test data into wd /test
+# RUN mkdir -p /test && cp kallisto-${KALLISTO_VER}/test/* /test/
 
-WORKDIR /test
+# WORKDIR /test
 
-# print help and version info; check dependencies (not all software has these options available)
-# Mostly this ensures the tool of choice is in path and is executable
-RUN kallisto version
+# # print help and version info; check dependencies (not all software has these options available)
+# # Mostly this ensures the tool of choice is in path and is executable
+# RUN kallisto version
 
-# Run the program's internal tests
-RUN kallisto index -i transcripts.idx transcripts.fasta.gz && \
-    kallisto quant -i transcripts.idx -o output -b 100 reads_1.fastq.gz reads_2.fastq.gz
+# # Run the program's internal tests
+# RUN kallisto index -i transcripts.idx transcripts.fasta.gz && \
+#     kallisto quant -i transcripts.idx -o output -b 100 reads_1.fastq.gz reads_2.fastq.gz
 
-# set the new directory because I don't want to be in the test directory
-WORKDIR /data
+# # set the new directory because I don't want to be in the test directory
+# WORKDIR /data
 
 
 
