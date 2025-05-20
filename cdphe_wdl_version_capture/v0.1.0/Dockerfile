@@ -7,10 +7,11 @@ LABEL maintainer "Arianna Smith <arianna.smith@state.co.us>"
 ENV HOST='ariannaesmith'
 ENV NAME="cdphe_wdl_version_capture"
 ENV VERSION="v0.1.0"
-
-WORKDIR /usr/src/app
-
+ENV APPDIR=/usr/src/app
 ENV PATH="/usr/src/app:$PATH"
+
+WORKDIR $APPDIR
+
 
 COPY scripts/* ./
 COPY requirements.txt ./
