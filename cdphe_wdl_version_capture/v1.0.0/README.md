@@ -41,8 +41,6 @@ version_capture.py \
   --out_fn version_capture_123456789_SC2_ont_assembly_cov_2198_grid_v2_3_6.csv
   --project_name cov_2198_grid \
   --versions_json versions.json \
-  --workflow_name SC2_ont_assembly \
-  --workflow_version v2_3_6 \
   --sample_name 123456789
 ```
 
@@ -56,9 +54,7 @@ version_capture.py \
   --docker_version $VERSION
   --out_fn version_capture_SC2_lineage_calling_cov_2198_grid_v2_3_6.csv
   --project_name cov_2198_grid \
-  --versions_json versions.json \
-  --workflow_name SC2_lineage_calling \
-  --workflow_version v2_3_6 
+  --versions_json versions.json 
 ```
 
 ### versions.json

@@ -26,12 +26,6 @@ def get_options(args=sys.argv[1:]):
     parser.add_argument('--versions_json', 
                         help = 'JSON file with an array of version_info objects (keys should be "software", "docker", and "version")',
                         required = True)
-    parser.add_argument('--workflow_name', 
-                        help = 'workflow name (e.g. SC2_ont_assembly)',
-                        required = True)
-    parser.add_argument('--workflow_version', 
-                        help = 'workflow version without periods (e.g. v2-2-0)',
-                        required = True)
     parser.add_argument('--sample_name', 
                         help = 'provide only when calling from a sample-level workflow', 
                         required = False,
