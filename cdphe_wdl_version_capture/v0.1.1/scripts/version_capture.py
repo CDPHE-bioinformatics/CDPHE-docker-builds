@@ -8,6 +8,18 @@ def get_options(args=sys.argv[1:]):
     parser.add_argument('--analysis_date', 
                         help = 'date to add to the analysis_date column in the output CSV',
                         required = True)
+    parser.add_argument('--docker_name', 
+                        help = 'the Dockerfile ENV variable "NAME" for this container',
+                        required = True)
+    parser.add_argument('--docker_host', 
+                        help = 'the Dockerfile ENV variable "HOST" for this container',
+                        required = True)
+    parser.add_argument('--docker_version', 
+                        help = 'the Dockerfile ENV variable "VERSION" for this container',
+                        required = True)
+    parser.add_argument('--out_fn', 
+                        help = 'the name for the output file',
+                        required = True)
     parser.add_argument('--project_name', 
                         help = 'project name of batch being analyzed (e.g. cov_2022_grid)',
                         required = True)
@@ -19,15 +31,6 @@ def get_options(args=sys.argv[1:]):
                         required = True)
     parser.add_argument('--workflow_version', 
                         help = 'workflow version without periods (e.g. v2-2-0)',
-                        required = True)
-    parser.add_argument('--docker_name', 
-                        help = 'the Dockerfile ENV variable "NAME" for this container',
-                        required = True)
-    parser.add_argument('--docker_host', 
-                        help = 'the Dockerfile ENV variable "HOST" for this container',
-                        required = True)
-    parser.add_argument('--docker_version', 
-                        help = 'the Dockerfile ENV variable "VERSION" for this container',
                         required = True)
     parser.add_argument('--sample_name', 
                         help = 'provide only when calling from a sample-level workflow', 
@@ -63,18 +66,7 @@ def create_version_df(options):
     
     return df
 
-def create_out_fn(options):
-    prefix = 'version_capture_'
-    suffix = f'{options.workflow_name}_{options.project_name}_{options.workflow_version}.csv'
-    if options.sample_name is not None:
-        out_fn = prefix + options.sample_name + '_' + suffix
-    else:
-        out_fn = prefix + suffix
-    
-    return out_fn
-        
 if __name__ == '__main__':
     options = get_options()
     df = create_version_df(options)
-    out_fn = create_out_fn(options)
-    df.to_csv(out_fn, index=False)
+    df.to_csv(options.out_fn, index=False)
