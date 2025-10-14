@@ -40,16 +40,18 @@ version_capture.py \
 
 ### versions.json
 ```
-[ 
-    { 
-        "docker": "staphb/samtools:1.16", 
-        "software": "samtools", 
-        "version": "1.16" 
-    }, 
-    { 
-        "docker": "quay.io/biocontainers/hostile:1.0.0--pyhdfd78af_0", 
-        "software": "hostile", 
-        "version": "1.0.0" 
-    }
-]
+{
+    "versions": [
+        {
+            "docker": "staphb/samtools:1.16",
+            "software": "samtools",
+            "version": "1.16"
+        },
+        {
+            "docker": "quay.io/biocontainers/hostile:1.0.0--pyhdfd78af_0",
+            "software": "hostile",
+            "version": "1.0.0"
+        }
+    ]
+}
 ```
