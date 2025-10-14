@@ -31,7 +31,8 @@ def get_options(args=sys.argv[1:]):
                         required = True)
     parser.add_argument('--sample_name', 
                         help = 'provide only when calling from a sample-level workflow', 
-                        required = False)
+                        required = False,
+                        default = None)
     options = parser.parse_args(args)
     return options
 
