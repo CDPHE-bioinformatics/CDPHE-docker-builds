@@ -41,18 +41,33 @@ version_capture.py \
   --sample_name 123456789
 ```
 
+**or**
+```
+version_capture.py \
+  --analysis_date 2024-10-19
+  --docker_name $NAME
+  --docker_host $HOST
+  --docker_version $VERSION
+  --project_name cov_2198_grid \
+  --versions_json versions.json \
+  --workflow_name SC2_ont_assembly \
+  --workflow_version v2_3_6 
+```
+
 ### versions.json
 ```
-[ 
-    { 
-        "docker": "staphb/samtools:1.16", 
-        "software": "samtools", 
-        "version": "1.16" 
-    }, 
-    { 
-        "docker": "quay.io/biocontainers/hostile:1.0.0--pyhdfd78af_0", 
-        "software": "hostile", 
-        "version": "1.0.0" 
-    }
-]
+{
+    "versions": [
+        {
+            "docker": "staphb/samtools:1.16",
+            "software": "samtools",
+            "version": "1.16"
+        },
+        {
+            "docker": "quay.io/biocontainers/hostile:1.0.0--pyhdfd78af_0",
+            "software": "hostile",
+            "version": "1.0.0"
+        }
+    ]
+}
 ```
