@@ -13,6 +13,8 @@ Script parameters:
 
 `--docker_version` - the Dockerfile ENV variable `VERSION` for this container
 
+`--out_fn` - the name for the output file
+
 `--project_name` - name of sequencing run being analyzed
 
 `--version_capture_docker_version` - the version of this docker image
@@ -28,12 +30,15 @@ Script parameters:
 
 ## Examples
 ### Usage
+For sample-level workflow:
+
 ```
 version_capture.py \
   --analysis_date 2024-10-19
   --docker_name $NAME
   --docker_host $HOST
   --docker_version $VERSION
+  --out_fn version_capture_123456789_SC2_ont_assembly_cov_2198_grid_v2_3_6.csv
   --project_name cov_2198_grid \
   --versions_json versions.json \
   --workflow_name SC2_ont_assembly \
@@ -41,16 +46,18 @@ version_capture.py \
   --sample_name 123456789
 ```
 
-**or**
+For set-level workflow:
+
 ```
 version_capture.py \
   --analysis_date 2024-10-19
   --docker_name $NAME
   --docker_host $HOST
   --docker_version $VERSION
+  --out_fn version_capture_SC2_lineage_calling_cov_2198_grid_v2_3_6.csv
   --project_name cov_2198_grid \
   --versions_json versions.json \
-  --workflow_name SC2_ont_assembly \
+  --workflow_name SC2_lineage_calling \
   --workflow_version v2_3_6 
 ```
 
