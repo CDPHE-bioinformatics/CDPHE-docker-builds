@@ -1,0 +1,3 @@
+# artic-fieldbioinformatics v1.8.5
+
+This Dockerfile corresponds to the [ariannaesmith/artic-fieldbioinformatics:1.8.5](https://hub.docker.com/repository/docker/ariannaesmith/artic-fieldbioinformatics/tags/v1.8.5/sha256-cd861e5e86c3c608255eec6c2a4f341134da743e7cebffb003ad8f044cc84d9c) image hosted on Dockerhub. The source code is from the [artic-network/fieldbioinformatics repo](https://github.com/artic-network/fieldbioinformatics/tree/v1.8.5) (release v1.8.5) for alignment, variant calling, and consensus generation of SARS-CoV-2 genomes from Oxford Nanopore reads. The reason for not using the developer's container is that the container requires root permissions by default for Terra.bio compatibility. It also contains all models from `artic_get_models`.
